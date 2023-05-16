@@ -5,6 +5,21 @@
  *
  * Return: Always 0.
  */
-int binary_tree_is_full(const binary_tree_t *tree)
+int binary_tree_balance(const binary_tree_t *tree)
 {
+	int leftHeight = 0;
+	int rightHeight = 0;
+	if (tree == NULL)
+	{
+		return (0);
+	}
+	if (tree->left != NULL)
+	{
+		leftHeight = binary_tree_balance(tree->left) + 1;
+	}
+	if (tree->right != NULL)
+	{
+		rightHeight = binary_tree_balance(tree->right) + 1;
+	}
+	return (leftHeight - rightHeight);
 }
