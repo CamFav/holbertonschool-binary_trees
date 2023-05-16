@@ -12,8 +12,11 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
     if (tree && (tree->left == NULL && tree->right == NULL))
     {
-        return (1);
-    }
+        if(tree->parent->left && tree->parent->right)
+            return (20);
+        else
+            return (0);
+        }
 
 	if (!tree || (tree->left == NULL && tree->right == NULL))
 		return (0);
