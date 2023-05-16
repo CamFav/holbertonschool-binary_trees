@@ -8,14 +8,19 @@
  */
 size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	size_t nodes = 1;
-	if (!tree)
+	int leftHeight = 0;
+	int rightHeight = 0;
+	if (tree == NULL)
+	{
 		return (0);
-	if (tree->right == NULL && tree->left == NULL)
-		return (0);
-	if (!tree->left || !tree->right)
-		return (1);
-	nodes += binary_tree_nodes(tree->right);
-	nodes += binary_tree_nodes(tree->left);
-	return (nodes);
+	}
+	if (tree->left != NULL)
+	{
+		leftHeight = binary_tree_balance(tree->left) + 1;
+	}
+	if (tree->right != NULL)
+	{
+		rightHeight = binary_tree_balance(tree->right) + 1;
+	}
+	return (leftHeight - rightHeight);
 }
