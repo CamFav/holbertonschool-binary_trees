@@ -7,7 +7,32 @@
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
+	int l = 1;
+	int r = 1;
+	int h = 0;
+	int f = 0;
+
 	if (!tree)
-        return (0);
-    return (0);
+		return (0);
+	/**if ((!tree->left || !tree->right) && (tree->left && tree->right))*/
+	if ((tree->left && !tree->right) || (!tree->left && tree->right))
+	{
+		return (0);
+	}
+	if (tree->left || tree->right)
+	{
+		f += binary_tree_is_full(tree->left);
+		l += binary_tree_height(tree->left);
+		f += binary_tree_is_full(tree->right);
+		r += binary_tree_height(tree->right);
+		if (f == 0)
+		{
+			h = binary_tree_height(tree);
+			if ((l == h) && (r == h))
+				return (1);
+			else
+				return (0);
+		}
+	}
+	return (0);
 }
